@@ -68,7 +68,7 @@ class Event(models.Model):
     stop_date = models.DateTimeField(null=True, blank=True)
 
     def __str__(self):
-        return self.name
+        return self.title
 
 
 @receiver(post_save, sender=User)

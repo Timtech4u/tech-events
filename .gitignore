@@ -34,3 +34,9 @@ node_modules/
 
 # dotenv environment variables file
 .env
+
+#Python compiled files
+*.pyc
+
+#Local DB
+server/events/db.sqlite3

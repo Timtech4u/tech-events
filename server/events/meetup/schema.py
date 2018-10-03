@@ -35,4 +35,6 @@ class Query(object):
         return Interest.objects.all()
 
     def resolve_all_profiles(self, info, **kwargs):
-        return Profile.objects.all()
+        return Profile.objects.select_related('user')
+
+    # TODO: Implement Single Objects

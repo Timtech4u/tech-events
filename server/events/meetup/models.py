@@ -5,21 +5,6 @@ from django.dispatch import receiver
 from django.core.exceptions import ValidationError
 
 
-class Profile(models.Model):
-    """
-    Profile Model for User 
-    Auto Created for each new User
-    Registered User can be Organizer or Attendee
-    """
-    user = models.OneToOneField(User, on_delete=models.CASCADE)
-    bio = models.TextField(max_length=500, blank=True)
-    location = models.CharField(max_length=30, blank=True)
-    birth_date = models.DateField(null=True, blank=True)
-    phone = models.CharField(max_length=20,  null=True, blank=True)
-
-    def __str__(self):
-        return self.user.username
-
 class Interest(models.Model):
     """
     Interests for User-Profile ang Groups
@@ -28,6 +13,22 @@ class Interest(models.Model):
 
     def __str__(self):
         return self.name
+        
+class Profile(models.Model):
+    """
+    Profile Model for User 
+    Auto Created for each new User
+    Registered User can be Organizer or Attendee
+    """
+    user = models.OneToOneField(User, on_delete=models.CASCADE, related_name='user')
+    bio = models.TextField(max_length=500, blank=True)
+    location = models.CharField(max_length=30, blank=True)
+    birth_date = models.DateField(null=True, blank=True)
+    phone = models.CharField(max_length=20,  null=True, blank=True)
+    interests = models.ManyToManyField(Interest, null=True, blank=True)
+
+    def __str__(self):
+        return self.user.username
 
 class Group(models.Model):
     """ 
@@ -35,7 +36,7 @@ class Group(models.Model):
     """
     name = models.CharField(max_length=50)
     leads = models.ForeignKey(Profile, on_delete=models.SET_NULL,  null=True, blank=True)
-    interests = models.ForeignKey(Interest, on_delete=models.SET_NULL, null=True, blank=True)
+    interests = models.ManyToManyField(Interest, null=True, blank=True)
     website = models.URLField(null=True, blank=True, )
     location = models.CharField(max_length=20)
     description = models.TextField()
@@ -60,7 +61,6 @@ class Event(models.Model):
     This is the model for events in a group.
     """
     title = models.CharField(max_length=50)
-    interests = models.ForeignKey(Interest, on_delete=models.SET_NULL, null=True, blank=True)
     organizers = models.ForeignKey(Profile, on_delete=models.SET_NULL, null=True, related_name='organizers')
     # Fetch Attendees Profile from UI and Pass here
     attendees = models.ForeignKey(Profile, on_delete=models.SET_NULL, null=True, related_name='attendees')

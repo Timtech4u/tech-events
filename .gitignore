@@ -1,11 +1,11 @@
 # Editor workspace settings
 .vscode
 
-# distribution directory
-dist/
+# production
+build/
 
-# Custom attributes
-.DS_Store
+# testing
+coverage/
 
 # Logs
 logs
@@ -32,8 +32,13 @@ node_modules/
 # Yarn Integrity file
 .yarn-integrity
 
-# dotenv environment variables file
+# misc
+.DS_Store
 .env
+.env.local
+.env.development.local
+.env.test.local
+.env.production.local
 
 #Python compiled files
 *.pyc

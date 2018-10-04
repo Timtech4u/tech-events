@@ -8,6 +8,11 @@ A SaaS Application to help organizers create event page for attendees
 - `python manage.py createsuperuser`
 - `python manage.py runserver`
 
+## Running Frontend (based on Node v8 & npm v6)
+- `cd client`
+- `yarn add`
+- `yarn start`
+
 ## Contribution Guidelines
 - Pick or Create an Issue in Github (or do so from project heading)
 - Create a branch for that and push only to that branch

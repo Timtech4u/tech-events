@@ -13,6 +13,8 @@ A SaaS Application to help organizers create event page for attendees
 - `yarn add`
 - `yarn start`
 
+# Bash Command to run both Server and Client from parent folder: `python server/manage.py && yarn client/ start`
+
 ## Contribution Guidelines
 - Pick or Create an Issue in Github (or do so from project heading)
 - Create a branch for that and push only to that branch
